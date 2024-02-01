@@ -1,14 +1,13 @@
 package com.example.demo.serviceImpl;
 
 import com.example.demo.dto.request.AccountRequest;
-import com.example.demo.dto.respons.AccountResponse;
+import com.example.demo.dto.response.AccountResponse;
 import com.example.demo.models.Account;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.service.AccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +37,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public List<AccountResponse> saveAccount(List<AccountRequest> requests) {
+
         List<Account> accountsList = new ArrayList<>();
         for (AccountRequest accountRequest : requests) {
             Account account = new Account();
@@ -66,6 +66,16 @@ public class AccountServiceImpl implements AccountService {
         } else {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
+    }
+    public ResponseEntity<?> deleteByAccountNo(Long accountNo){
+        Optional<Account> optionalAccount = accountRepository.findByAccountNo(accountNo);
+        if (optionalAccount.isPresent()){
+            accountRepository.delete(optionalAccount.get());
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted");
+        } else {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Unable to delete");
+        }
+
     }
 
 }

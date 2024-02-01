@@ -1,4 +1,4 @@
-package com.example.demo.dto.respons;
+package com.example.demo.dto.response;
 
 import lombok.*;
 

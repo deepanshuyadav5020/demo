@@ -1,21 +1,13 @@
-package com.example.demo.models;
+package com.example.demo.dto.request;
 
-import jakarta.persistence.*;
 import lombok.*;
 
-@Table
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-public class Contact {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class ContactRequest {
     private String firstName;
 
     private String lastName;
@@ -24,3 +16,4 @@ public class Contact {
 
     private Long accountNo;
 }
+

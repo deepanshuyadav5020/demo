@@ -13,4 +13,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM account WHERE account_no = :accountNo")
     Optional<Account> findByAccountNo(Long accountNo);
+
+    @Query(nativeQuery = true , value="DELETE FROM account WHERE ")
+    Optional<Account> deleteBYAccountNo(Long accountNo);
 }

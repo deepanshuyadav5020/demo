@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.request.AccountRequest;
-import com.example.demo.dto.respons.AccountResponse;
-import com.example.demo.models.Account;
+import com.example.demo.dto.response.AccountResponse;
 import com.example.demo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +29,11 @@ public class AccountController {
     @PostMapping
     public List<AccountResponse> saveAccount(@RequestBody List<AccountRequest> accountList){
         return accountService.saveAccount(accountList);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long accountNo){
+        return accountService.deleteByAccountNo(accountNo);
     }
 }
